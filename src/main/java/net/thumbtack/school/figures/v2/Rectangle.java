@@ -1,26 +1,30 @@
-package net.thumbtack.school.figures.v1;
+package net.thumbtack.school.figures.v2;
 
-public class Rectangle {
+public class Rectangle extends Figure {
     private Point2D leftTop, rightBottom;
 
-    public Rectangle(Point2D leftTop, Point2D rightBottom) {
+    public Rectangle(Point2D leftTop, Point2D rightBottom, int color) {
         this.leftTop = leftTop;
         this.rightBottom = rightBottom;
+        this.setColor(color);
     }
 
-    public Rectangle(int xLeft, int yTop, int xRight, int yBottom) {
+    public Rectangle(int xLeft, int yTop, int xRight, int yBottom, int color) {
         this.leftTop = new Point2D(xLeft, yTop);
         this.rightBottom = new Point2D(xRight, yBottom);
+        this.setColor(color);
     }
 
-    public Rectangle(int length, int width) {
+    public Rectangle(int length, int width, int color) {
         this.leftTop = new Point2D(0, -width);
         this.rightBottom = new Point2D(length, 0);
+        this.setColor(color);
     }
 
-    public Rectangle() {
+    public Rectangle(int color) {
         this.leftTop = new Point2D(0, -1);
         this.rightBottom = new Point2D(1, 0);
+        this.setColor(color);
     }
 
     public Point2D getTopLeft() {
@@ -79,16 +83,15 @@ public class Rectangle {
                 (this.leftTop.getY() <= point.getY() && point.getY() <= this.rightBottom.getY());
     }
 
-
     public boolean isIntersects(Rectangle rectangle) {
-        return this.isInside(rectangle.rightBottom)
-                || this.isInside(rectangle.leftTop)
-                || this.isInside(rectangle.leftTop.getX() + rectangle.getLength(), rectangle.leftTop.getY())
-                || this.isInside(rectangle.leftTop.getX(), rectangle.leftTop.getY() + rectangle.getWidth())
-                || rectangle.isInside(this.rightBottom)
-                || rectangle.isInside(this.leftTop)
-                || rectangle.isInside(this.leftTop.getX() + this.getLength(), this.leftTop.getY())
-                || rectangle.isInside(this.leftTop.getX(), this.leftTop.getY() + this.getWidth());
+        return this.isInside(rectangle.rightBottom) ||
+                this.isInside(rectangle.leftTop) ||
+                this.isInside(rectangle.leftTop.getX() + rectangle.getLength(), rectangle.leftTop.getY()) ||
+                this.isInside(rectangle.leftTop.getX(), rectangle.leftTop.getY() + rectangle.getWidth()) ||
+                rectangle.isInside(this.rightBottom) ||
+                rectangle.isInside(this.leftTop) ||
+                rectangle.isInside(this.leftTop.getX() + this.getLength(), this.leftTop.getY()) ||
+                rectangle.isInside(this.leftTop.getX(), this.leftTop.getY() + this.getWidth());
     }
 
     public boolean isInside(Rectangle rectangle) {
@@ -100,6 +103,7 @@ public class Rectangle {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Rectangle rectangle = (Rectangle) o;
 
@@ -109,7 +113,8 @@ public class Rectangle {
 
     @Override
     public int hashCode() {
-        int result = leftTop != null ? leftTop.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (leftTop != null ? leftTop.hashCode() : 0);
         result = 31 * result + (rightBottom != null ? rightBottom.hashCode() : 0);
         return result;
     }
