@@ -1,29 +1,33 @@
-package net.thumbtack.school.figures.v1;
+package net.thumbtack.school.figures.v2;
 
 import static java.lang.Math.pow;
 
-public class Circle {
+public class Circle extends Figure {
     private Point2D center;
     private int radius;
 
-    public Circle(Point2D center, int raduis) {
+    public Circle(Point2D center, int radius, int color) {
         this.center = center;
-        this.radius = raduis;
+        this.radius = radius;
+        this.setColor(color);
     }
 
-    public Circle(int xCenter, int yCenter, int radius) {
+    public Circle(int xCenter, int yCenter, int radius, int color) {
         this.center = new Point2D(xCenter, yCenter);
         this.radius = radius;
+        this.setColor(color);
     }
 
-    public Circle(int radius) {
+    public Circle(int radius, int color) {
         this.center = new Point2D();
         this.radius = radius;
+        this.setColor(color);
     }
 
-    public Circle() {
+    public Circle(int color) {
         this.center = new Point2D();
         this.radius = 1;
+        this.setColor(color);
     }
 
     public Point2D getCenter() {
@@ -55,26 +59,6 @@ public class Circle {
         return Math.PI * pow(radius, 2);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Circle circle = (Circle) o;
-
-        if (radius != circle.radius) return false;
-        return center != null ? center.equals(circle.center) : circle.center == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = center != null ? center.hashCode() : 0;
-        result = 31 * result + radius;
-        return result;
-    }
-
     public double getPerimeter() {
         return Math.PI * 2 * radius;
     }
@@ -85,5 +69,25 @@ public class Circle {
 
     public boolean isInside(Point2D point) {
         return pow(point.getX() - center.getX(), 2) + pow(point.getY() - center.getY(), 2) <= pow(radius, 2);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Circle circle = (Circle) o;
+
+        if (radius != circle.radius) return false;
+        return center != null ? center.equals(circle.center) : circle.center == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (center != null ? center.hashCode() : 0);
+        result = 31 * result + radius;
+        return result;
     }
 }
