@@ -59,6 +59,8 @@ public class Point2D {
         Point2D other = (Point2D) obj;
         if (x != other.x)
             return false;
-        return y == other.y;
+        if (y != other.y)
+            return false;
+        return true;
     }
 }

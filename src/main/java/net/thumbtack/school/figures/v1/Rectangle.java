@@ -79,16 +79,15 @@ public class Rectangle {
                 (this.leftTop.getY() <= point.getY() && point.getY() <= this.rightBottom.getY());
     }
 
-
     public boolean isIntersects(Rectangle rectangle) {
-        return this.isInside(rectangle.rightBottom)
-                || this.isInside(rectangle.leftTop)
-                || this.isInside(rectangle.leftTop.getX() + rectangle.getLength(), rectangle.leftTop.getY())
-                || this.isInside(rectangle.leftTop.getX(), rectangle.leftTop.getY() + rectangle.getWidth())
-                || rectangle.isInside(this.rightBottom)
-                || rectangle.isInside(this.leftTop)
-                || rectangle.isInside(this.leftTop.getX() + this.getLength(), this.leftTop.getY())
-                || rectangle.isInside(this.leftTop.getX(), this.leftTop.getY() + this.getWidth());
+        return this.isInside(rectangle.rightBottom) ||
+                this.isInside(rectangle.leftTop) ||
+                this.isInside(rectangle.leftTop.getX() + rectangle.getLength(), rectangle.leftTop.getY()) ||
+                this.isInside(rectangle.leftTop.getX(), rectangle.leftTop.getY() + rectangle.getWidth()) ||
+                rectangle.isInside(this.rightBottom) ||
+                rectangle.isInside(this.leftTop) ||
+                rectangle.isInside(this.leftTop.getX() + this.getLength(), this.leftTop.getY()) ||
+                rectangle.isInside(this.leftTop.getX(), this.leftTop.getY() + this.getWidth());
     }
 
     public boolean isInside(Rectangle rectangle) {
