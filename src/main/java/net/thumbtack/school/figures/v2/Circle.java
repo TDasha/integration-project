@@ -12,8 +12,8 @@ public class Circle extends Figure {
         this.setColor(color);
     }
 
-    public Circle(int xCenter, int yCenter, int radius, int color) {
-        this.center = new Point2D(xCenter, yCenter);
+    public Circle(int cordXCenter, int cordYCenter, int radius, int color) {
+        this.center = new Point2D(cordXCenter, cordYCenter);
         this.radius = radius;
         this.setColor(color);
     }
@@ -51,8 +51,8 @@ public class Circle extends Figure {
         this.center.setY(this.center.getY() + dy);
     }
 
-    public void enlarge(int n) {
-        this.radius = n * radius;
+    public void enlarge(int num) {
+        this.radius = num * radius;
     }
 
     public double getArea() {
@@ -63,8 +63,8 @@ public class Circle extends Figure {
         return Math.PI * 2 * radius;
     }
 
-    public boolean isInside(int x, int y) {
-        return pow(x - center.getX(), 2) + pow(y - center.getY(), 2) <= pow(radius, 2);
+    public boolean isInside(int cordX, int cordY) {
+        return pow(cordX - center.getX(), 2) + pow(cordY - center.getY(), 2) <= pow(radius, 2);
     }
 
     public boolean isInside(Point2D point) {
@@ -72,14 +72,22 @@ public class Circle extends Figure {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
 
-        Circle circle = (Circle) o;
+        Circle circle = (Circle) obj;
 
-        if (radius != circle.radius) return false;
+        if (radius != circle.radius) {
+            return false;
+        }
         return center != null ? center.equals(circle.center) : circle.center == null;
     }
 

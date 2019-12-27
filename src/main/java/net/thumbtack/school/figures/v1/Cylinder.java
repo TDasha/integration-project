@@ -1,42 +1,43 @@
 package net.thumbtack.school.figures.v1;
 
 public class Cylinder extends Circle {
-    private int h;
+
+    private int hight;
 
     public Cylinder(Point2D center, int radius, int height) {
         super(center, radius);
-        this.h = height;
+        this.hight = height;
     }
 
-    public Cylinder(int xCenter, int yCenter, int radius, int height) {
-        super(xCenter, yCenter, radius);
-        this.h = height;
+    public Cylinder(int cordXCenter, int cordYCenter, int radius, int height) {
+        super(cordXCenter, cordYCenter, radius);
+        this.hight = height;
     }
 
     public Cylinder(int radius, int height) {
         super(radius);
-        this.h = height;
+        this.hight = height;
     }
 
     public Cylinder() {
         super();
-        this.h = 1;
+        this.hight = 1;
     }
 
     public int getHeight() {
-        return this.h;
+        return this.hight;
     }
 
     public void setHeight(int height) {
-        this.h = height;
+        this.hight = height;
     }
 
     public double getVolume() {
         return this.getArea() * this.getHeight();
     }
 
-    public boolean isInside(int x, int y, int z) {
-        return this.isInside(x, y) && (z >= 0 && z <= this.getHeight());
+    public boolean isInside(int cordX, int cordY, int cordZ) {
+        return this.isInside(cordX, cordY) && cordZ >= 0 && cordZ <= this.getHeight();
     }
 
     public boolean isInside(Point3D point) {
@@ -44,20 +45,26 @@ public class Cylinder extends Circle {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
 
-        Cylinder cylinder = (Cylinder) o;
+        Cylinder cylinder = (Cylinder) obj;
 
-        return h == cylinder.h;
+        return hight == cylinder.hight;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + h;
+        result = 31 * result + hight;
         return result;
     }
 }

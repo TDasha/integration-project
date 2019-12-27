@@ -1,24 +1,28 @@
 package net.thumbtack.school.figures.v2;
 
-abstract public class Figure implements Colored {
+public abstract class Figure implements Colored {
     public int color;
 
-    abstract public double getPerimeter();
+    public abstract double getPerimeter();
 
-    abstract public double getArea();
+    public abstract double getArea();
 
-    abstract public boolean isInside(int x, int y);
+    public abstract boolean isInside(int cordX, int cordY);
 
-    abstract public boolean isInside(Point2D point);
+    public abstract boolean isInside(Point2D point);
 
-    abstract public void moveRel(int dx, int dy);
+    public abstract void moveRel(int dx, int dy);
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Figure figure = (Figure) o;
+        Figure figure = (Figure) obj;
 
         return color == figure.color;
     }

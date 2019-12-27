@@ -3,6 +3,7 @@ package net.thumbtack.school.figures.v1;
 import static java.lang.Math.pow;
 
 public class Circle {
+
     private Point2D center;
     private int radius;
 
@@ -11,8 +12,8 @@ public class Circle {
         this.radius = raduis;
     }
 
-    public Circle(int xCenter, int yCenter, int radius) {
-        this.center = new Point2D(xCenter, yCenter);
+    public Circle(int cordXCenter, int cordYCenter, int radius) {
+        this.center = new Point2D(cordXCenter, cordYCenter);
         this.radius = radius;
     }
 
@@ -47,8 +48,8 @@ public class Circle {
         this.center.setY(this.center.getY() + dy);
     }
 
-    public void enlarge(int n) {
-        this.radius = n * radius;
+    public void enlarge(int num) {
+        this.radius = num * radius;
     }
 
     public double getArea() {
@@ -56,15 +57,19 @@ public class Circle {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) return false;
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Circle circle = (Circle) o;
+        Circle circle = (Circle) obj;
 
-        if (radius != circle.radius) return false;
+        if (radius != circle.radius) {
+            return false;
+        }
         return center != null ? center.equals(circle.center) : circle.center == null;
     }
 
@@ -79,11 +84,12 @@ public class Circle {
         return Math.PI * 2 * radius;
     }
 
-    public boolean isInside(int x, int y) {
-        return pow(x - center.getX(), 2) + pow(y - center.getY(), 2) <= pow(radius, 2);
+    public boolean isInside(int cordX, int cordY) {
+        return pow(cordX - center.getX(), 2) + pow(cordY - center.getY(), 2) <= pow(radius, 2);
     }
 
     public boolean isInside(Point2D point) {
-        return pow(point.getX() - center.getX(), 2) + pow(point.getY() - center.getY(), 2) <= pow(radius, 2);
+        return pow(point.getX() - center.getX(), 2) + pow(point.getY() - center.getY(), 2) <= pow(
+            radius, 2);
     }
 }

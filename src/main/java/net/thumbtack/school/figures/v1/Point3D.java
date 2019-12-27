@@ -2,55 +2,59 @@ package net.thumbtack.school.figures.v1;
 
 public class Point3D extends Point2D {
 
-    private int z;
+    private int cordZ;
 
-    public Point3D(int x, int y, int z) {
-        super(x, y);
-        this.z = z;
+    public Point3D(int cordX, int cordY, int cordZ) {
+        super(cordX, cordY);
+        this.cordZ = cordZ;
     }
 
-    public Point3D(int z) {
+    public Point3D(int cordZ) {
         super();
-        this.z = z;
+        this.cordZ = cordZ;
     }
 
     public Point3D() {
         super();
-        z = 0;
+        cordZ = 0;
     }
 
     public int getZ() {
-        return z;
+        return cordZ;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public void setZ(int cordZ) {
+        this.cordZ = cordZ;
     }
 
     public void move(int dx, int dy, int dz) {
         super.moveRel(dx, dy);
-        z += dz;
+        cordZ += dz;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + z;
+        result = prime * result + cordZ;
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (!super.equals(obj))
+        }
+        if (!super.equals(obj)) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Point3D other = (Point3D) obj;
-        if (z != other.z)
+        if (cordZ != other.cordZ) {
             return false;
+        }
         return true;
     }
 
